@@ -27,8 +27,6 @@
 }
 
 div.slider.background {
-    position: absolute;
-    top: 0;
     width: 100%;
     height: 100%;
 }
@@ -129,7 +127,7 @@ div.column > div.overlay.center {
 }
 
 h2 span.underline {
-    background: url('../images/underline.svg') center bottom no-repeat;
+    background: url('images/underline.svg') center bottom no-repeat;
     background-size: 100%;
     padding-bottom: 14px;
 }
@@ -282,14 +280,14 @@ h2 span.underline.small {
     display: inline-block;
     width: 12px;
     height: 12px;
-    background: url('../images/slider-dots.png') -12px 0px no-repeat;
+    background: url('images/slider-dots.png') -12px 0px no-repeat;
     text-indent: -5000px;
     margin-left: 3px;
     margin-right: 3px;
 }
 
 .slider > div.dots > a.on {
-    background: url('../images/slider-dots.png') 0px 0px no-repeat;
+    background: url('images/slider-dots.png') 0px 0px no-repeat;
 }
 
 .slider > div.dots > a:hover {
