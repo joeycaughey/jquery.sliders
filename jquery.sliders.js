@@ -46,8 +46,7 @@
             })
 
             slide(current_slide);
-            check_options();
-
+        
             var interval = false;
 
             function set_interval() {
@@ -117,27 +116,26 @@
 
             function check_options() {
                 console.log(
+                    settings.show,
                     current_slide, 
                     number_of_slides, 
                      
-                    ((current_slide * settings.show) ), 
-                    (((current_slide * settings.show) ) >= number_of_slides)
+                    ((current_slide * settings.show) + settings.show), 
+                    (((current_slide * settings.show) + settings.show) >= number_of_slides)
                 );
 
                 $(".next, .previous", wrapper).fadeIn();
 
-                if (
-                    (
-                        (current_slide === number_of_slides) || 
-                        (
-                            (settings.show > 1) &&
-                            ((current_slide * settings.show)) >= number_of_slides 
-                        )
-                    )
-                ) {
 
+                if (settings.show > 1) {
+                    if (((current_slide * settings.show) + settings.show)  >= number_of_slides ) {
+                        $(".next", wrapper).fadeOut(); 
+                    }
+                } else if (current_slide === number_of_slides)  {
+                    alert(true);
                     $(".next", wrapper).fadeOut();
-                } 
+                }
+             
 
                 if (current_slide === 0) {
                     $(".previous", wrapper).fadeOut();
@@ -176,6 +174,8 @@
                          last();
                     })
                 );
+
+                check_options();
 
                 if (wrapper.data("displaydots")) {
                     $("div.dots", wrapper).remove();
