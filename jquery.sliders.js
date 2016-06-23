@@ -117,27 +117,30 @@
 
             function check_options() {
                 console.log(
+                    current_slide, 
                     number_of_slides, 
-                    current_slide,  
-                    ((current_slide * settings.show) + settings.show ), 
-                    (((current_slide * settings.show) + settings.show <= number_of_slides))
+                     
+                    ((current_slide * settings.show) + settings.show), 
+                    (((current_slide * settings.show) + settings.show) >= number_of_slides)
                 );
 
-                if (
-                    (number_of_slides > 1 && 
-                        ( ( (current_slide * settings.show) + settings.show) <= number_of_slides )
-                    ) || settings.loop) {
-                    $(".next", wrapper).fadeIn();
-                } else {
-                    $(".next", wrapper).fadeOut();
-                }
+                $(".next, .previous", wrapper).fadeIn();
 
-                if ((current_slide >= 1) || settings.loop) {
-                    $(".previous", wrapper).fadeIn();
-                } else {
+                if (
+                    (
+                        (current_slide === number_of_slides) || 
+                        (
+                            ((current_slide * settings.show) + settings.show) >= number_of_slides 
+                        )
+                    )
+                ) {
+
+                    $(".next", wrapper).fadeOut();
+                } 
+
+                if (current_slide === 0) {
                     $(".previous", wrapper).fadeOut();
-                    
-                }
+                } 
 
                 // Toggle Navigation Items
 
