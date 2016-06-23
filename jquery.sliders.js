@@ -120,8 +120,8 @@
                     current_slide, 
                     number_of_slides, 
                      
-                    ((current_slide * settings.show) + settings.show), 
-                    (((current_slide * settings.show) + settings.show) >= number_of_slides)
+                    ((current_slide * settings.show) ), 
+                    (((current_slide * settings.show) ) >= number_of_slides)
                 );
 
                 $(".next, .previous", wrapper).fadeIn();
@@ -130,7 +130,8 @@
                     (
                         (current_slide === number_of_slides) || 
                         (
-                            ((current_slide * settings.show) + settings.show) >= number_of_slides 
+                            (settings.show > 1) &&
+                            ((current_slide * settings.show)) >= number_of_slides 
                         )
                     )
                 ) {
