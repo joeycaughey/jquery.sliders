@@ -59,8 +59,9 @@ The reason for this is to make the slide content as flexible as possible.  You d
 
 CALLOUT ALIGNMENT
 The callout has four alignment classes that can be added to the html for anchor placement.
-
+```
 **“left”** - Anchor to the left side of the slide
 **“right”** - Anchor to the right side of the slide
 **“top”** - Anchor to the top of the slide
 **“bottom”** - Anchor to the bottom of the slide
+```
