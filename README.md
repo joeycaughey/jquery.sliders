@@ -52,3 +52,15 @@ $("#slider").init({
 Styling the Slider
 ----------------------------------------------------
 
+There is a set styling to the initial sliders setup.  The main holder defined with “.slider” is set to 100% of the width of the parent element and the view port as well.   Never adjust the styles in the asset stylesheet but overwrite them in your main stylesheet for things like the next, preview, dot markers, and callouts.
+
+The reason for this is to make the slide content as flexible as possible.  You don’t have to use the standard “callout” and can put and position any elements you want on the slide with HTML and CSS and they will become part of the slide feature automatically.
+
+
+CALLOUT ALIGNMENT
+The callout has four alignment classes that can be added to the html for anchor placement.
+
+**“left”** - Anchor to the left side of the slide
+**“right”** - Anchor to the right side of the slide
+**“top”** - Anchor to the top of the slide
+**“bottom”** - Anchor to the bottom of the slide
