@@ -6,7 +6,7 @@ jquery.sliders is a responsive slider that separates the function Javascript ent
 ----------------------------------------------------
 HTML
 ----------------------------------------------------
-```
+```html
 <div class="slider" id="slider">
   <div class="viewport">
       <ul class="slides">
@@ -36,7 +36,7 @@ HTML
 Initialization and Options
 ----------------------------------------------------
 
-```
+```javascript
 $("#slider").init({
     show: 1,
     autoplay: false,
@@ -59,7 +59,7 @@ The reason for this is to make the slide content as flexible as possible.  You d
 
 CALLOUT ALIGNMENT
 The callout has four alignment classes that can be added to the html for anchor placement.
-```
+```text
 “left” - Anchor to the left side of the slide
 “right” - Anchor to the right side of the slide
 “top” - Anchor to the top of the slide
