@@ -25,8 +25,6 @@
                 }).appendTo(ul);
             }
 
-            console.log("Left", $(li).css("marginLeft"), $(li).css("marginRight"));
-
             var offsets = parseInt($(li).css("margin-left")) + 
                 parseInt($(li).css("margin-right"));
 
@@ -132,7 +130,6 @@
                         $(".next", wrapper).fadeOut(); 
                     }
                 } else if (current_slide === number_of_slides)  {
-                    alert(true);
                     $(".next", wrapper).fadeOut();
                 }
              
