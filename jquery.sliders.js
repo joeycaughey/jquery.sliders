@@ -16,8 +16,8 @@
                 viewport = $(".viewport", this),
                 ul = $("ul.slides", viewport),
                 li = ul.children("li"),
-                current_slide = 0,
-                number_of_slides = (li.length-1);
+                current_slide = wrapper.attr("data-current-slide") ? wrapper.attr("data-current-slide") : 0,
+                number_of_slides = (li.length - 1);
 
             if (settings.random) {
                 $('li', ul).sort(function() {
@@ -25,15 +25,16 @@
                 }).appendTo(ul);
             }
 
-            var offsets = parseInt($(li).css("margin-left")) + 
+            var offsets = parseInt($(li).css("margin-left")) +
                 parseInt($(li).css("margin-right"));
 
             var item_width = Math.round((viewport.width() / settings.show) - offsets);
 
-             
 
             $(li).width(item_width);
             $(ul).width(item_width * ((number_of_slides + 1) / settings.rows) + 1000);
+
+            $(ul).stop().css("marginLeft", -(current_slide * (item_width + offsets) * settings.show));
 
             $.each(li, function() {
                 image = $(this).data("background");
@@ -44,7 +45,7 @@
             })
 
             slide(current_slide);
-        
+
             var interval = false;
 
             function set_interval() {
@@ -66,19 +67,21 @@
             function slide(slide) {
                 current_slide = slide;
 
+                wrapper.attr("data-current-slide", slide);
+
                 if (li.eq(current_slide).find("div.callout").length) {
                     li.eq(current_slide).find("div.callout")
                         .css("opacity", 0)
                         .css("margin-top", "0px")
                         .animate({
                             'opacity': 1,
-                            'margin-top': -(li.eq(current_slide).find("div.callout").height()/2)
+                            'margin-top': -(li.eq(current_slide).find("div.callout").height() / 2)
                         }, 2000);
                 }
 
                 var current_position = parseInt(ul.css("marginLeft"));
-                $(ul).animate({
-                    marginLeft: -(current_slide * (item_width +offsets) * settings.show)
+                $(ul).stop().animate({
+                    marginLeft: -(current_slide * (item_width + offsets) * settings.show)
                 }, 500, function() {});
 
 
@@ -106,37 +109,28 @@
             }
 
             function last() {
-                if (number_of_slides > (settings.show-1)) {
-                    slide(number_of_slides/settings.show)
+                if (number_of_slides > (settings.show - 1)) {
+                    slide(number_of_slides / settings.show)
                 }
             }
 
 
             function check_options() {
-                console.log(
-                    settings.show,
-                    current_slide, 
-                    number_of_slides, 
-                     
-                    ((current_slide * settings.show) + settings.show), 
-                    (((current_slide * settings.show) + settings.show) >= number_of_slides)
-                );
-
                 $(".next, .previous", wrapper).fadeIn();
 
 
                 if (settings.show > 1) {
-                    if (((current_slide * settings.show) + settings.show)  >= number_of_slides ) {
-                        $(".next", wrapper).fadeOut(); 
+                    if (((current_slide * settings.show) + settings.show) >= number_of_slides) {
+                        $(".next", wrapper).fadeOut();
                     }
-                } else if (current_slide === number_of_slides)  {
+                } else if (current_slide === number_of_slides) {
                     $(".next", wrapper).fadeOut();
                 }
-             
+
 
                 if (current_slide === 0) {
                     $(".previous", wrapper).fadeOut();
-                } 
+                }
 
                 // Toggle Navigation Items
 
@@ -156,19 +150,19 @@
                 wrapper.append(
                     $('<a href="javascript: void(0);" class="previous"/>').on("click", function() {
                         previous();
-                       
-                    }).append( 
+
+                    }).append(
                         $('<i class="fa fa-3x fa-chevron-left">')
                     )
                 ).append(
                     $('<a href="javascript: void(0);" class="next"/>').on("click", function() {
-                         next();
-                    }).append( 
+                        next();
+                    }).append(
                         $('<i class="fa fa-3x fa-chevron-right">')
                     )
                 ).append(
                     $('<a href="javascript: void(0);" class="last"/>').on("click", function() {
-                         last();
+                        last();
                     })
                 );
 
@@ -215,7 +209,7 @@
 
 
 $(window).on("load", function() {
-   $(".slider").each(function() {
+    $(".slider").each(function() {
         $(this).slider({});
     });
 }).on("resize", function() {
