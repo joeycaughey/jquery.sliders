@@ -218,8 +218,7 @@ $(window).on("load", function() {
     })
 })
 
-
-if (typeof Routes.reload == 'function') {
+if (typeof Routes != 'undefined') {
     $(window).bind('hashchange', function() {
         $(".slider").each(function() {
             $(this).slider({});
